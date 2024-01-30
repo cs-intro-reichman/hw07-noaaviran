@@ -11,11 +11,34 @@ public class SpellChecker {
 	}
 
 	public static String tail(String str) {
-		// Your code goes here
+		if(str.length() > 1){
+			return str.substring(1);
+		} else {
+			return "";
+		}
 	}
 
 	public static int levenshtein(String word1, String word2) {
-		// Your code goes here
+		
+		if(word1.isEmpty()){
+			return word2.length();
+		}
+		if(word2.isEmpty()){
+			return word1.length();
+		}
+		
+		if(word1.length() == word2.length()){
+		if (word1.charAt(0) == word2.charAt(0)){
+		levenshtein(tail(word1), tail(word2));
+		return 0;
+		}
+	}
+		if(word1.length()!= word2.length()){
+		int check1 = levenshtein(tail(word1), word2) + 1;
+		int check2 = levenshtein(word1, tail(word2)) +1;
+		int check3= levenshtein(tail(word1), tail(word2))+1;
+		}
+		return Math.min(check3,(Math.min(check1, check2)));
 	}
 
 	public static String[] readDictionary(String fileName) {
